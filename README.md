@@ -110,3 +110,76 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 Copyright © Microsoft Corporation All rights reserved.<br />
 Licensed under the MIT License. See LICENSE in the project root for license information.
+##
+🐳 Manual Docker Installation
+
+Before using Dev Containers locally, you need to have Docker installed and running on your system.
+
+Windows
+
+Install Docker Desktop for Windows from the official Docker website
+.
+
+Enable WSL 2 (Windows Subsystem for Linux 2) if prompted.
+
+After installation, ensure Docker Desktop is running (look for the whale icon in your system tray).
+
+You can verify Docker is working by opening PowerShell or CMD and running:
+
+docker --version
+docker run hello-world
+
+macOS
+
+Install Docker Desktop for Mac from the official Docker website
+.
+
+After installation, open the Docker app and wait until it reports that Docker is running.
+
+Test your installation:
+
+docker --version
+docker run hello-world
+
+Linux (Ubuntu / Debian Example)
+
+Uninstall any old versions:
+
+sudo apt remove docker docker-engine docker.io containerd runc
+
+
+Update your package index and install prerequisites:
+
+sudo apt update
+sudo apt install ca-certificates curl gnupg lsb-release
+
+
+Add Docker’s official GPG key:
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+
+Add the Docker repository:
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+Install Docker Engine and CLI:
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+
+Test Docker:
+
+sudo docker run hello-world
+
+
+(Optional) Run Docker without sudo:
+
+sudo usermod -aG docker $USER
+newgrp docker
